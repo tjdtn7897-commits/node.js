@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>json-server 실행</h3>
+    <button id="registrationBtn">댓글등록</button>
+    <button id="crystalBtn">댓글수정</button>
+    <script>
+      document
+        .querySelector("#registrationBtn")
+        .addEventListener("click", (e) => {
+          fetch("http://localhost:3000/comments", {
+            method: "post",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ body: "hel231234", id: 1 }),
+          });
+        });
+      document.querySelector("#crystalBtn").addEventListener("click", (e) => {
+        fetch("http://localhost:3000/comments/1", {
+          method: "put",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ body: "qwer123" }),
+        });
+      });
+    </script>
+  </body>
+</html>
