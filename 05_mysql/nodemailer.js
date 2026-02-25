@@ -1,5 +1,7 @@
 // nodemailer.js
 const nodemailer = require("nodemailer");
+// 환경변수
+require("dotenv").config();
 
 const gmailConfig = {
   service: process.env.DAUM_SERVICE,
@@ -27,15 +29,28 @@ const send = async (data) => {
   });
 };
 
-const transport = nodemailer.createTransport({
-  service: "gmail",
-  host: "smtp.gmail.com",
-  // port: 587,
-  secure: false,
-  auth: {
-    user: "tjdtn7897@gmail.com",
-    pass: "uvcf ltul djyw vuvc",
-  },
-});
+// const transport = nodemailer.createTransport({
+//   service: "gmail",
+//   host: "smtp.gmail.com",
+//   // port: 587,
+//   secure: false,
+//   auth: {
+//     user: "tjdtn7897@gmail.com",
+//     pass: "uvcf ltul djyw vuvc",
+//   },
+// });
 
+// send({
+//   from: "tjdtn7897@gmail.com",
+//   to: "whu14777@daum.net",
+//   subject: "파일첨부테스트",
+//   html: "<p>파일첨부연습</p>",
+//   attachments: [
+//     {
+//       filename: "판다.png", // 파일명
+//       path: __dirname + "/uploads/" + "판다.png", // 실제 파일
+//     },
+//   ],
+// });
+// console.log("main send...");
 module.exports = { send };

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>엑셀 업로드</title>
+    <!-- 기존 CSS 파일 연결 (디자인 유지) -->
+    <link rel="stylesheet" href="./xls_upload.css" />
+  </head>
+  <body>
+    <div class="mail-container">
+      <h3>엑셀 파일 업로드</h3>
+      <form
+        id="excelForm"
+        action="/api/excel_upload"
+        enctype="multipart/form-data"
+        method="post"
+      >
+        <div class="form-group">
+          <label for="excelFile">파일 선택</label>
+          <input type="file" name="myfile" />
+        </div>
+
+        <div id="uploadStatus" class="upload-info">
+          엑셀 파일을 선택해주세요.
+        </div>
+
+        <button type="submit" class="send-btn" style="margin-top: 20px">
+          업로드 하기
+        </button>
+      </form>
+    </div>
+
+    <script>
+      document.querySelector("#excelForm").addEventListener("submit", (e) => {
+        console.log(e);
+
+        const excelmData = new ExcelmData(); // multipart 요청을 해줌
+        formData.append("myfile", e.target[4].files[0]);
+
+        fetch("./api/excel_upload", {
+          method: "post",
+          // headers: { "Content-Type": "application/json" },
+          body: excelmData,
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            console.log(data);
+
+            // if (data.retCode == "OK") {
+            //   alert("메일 발송");
+            //   location.reload();
+            // } else {
+            //   alert("발송 실패");
+            // }
+          })
+          .catch((err) => console.log(err));
+      });
+    </script>
+  </body>
+</html>
