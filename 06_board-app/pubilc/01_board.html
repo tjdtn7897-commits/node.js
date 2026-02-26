@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시글 등록</title>
+    <link rel="stylesheet" href="./board.css" />
+  </head>
+  <body>
+    <div class="form-container">
+      <h3>게시글 등록</h3>
+      <form action="/submit" method="POST" id="bulletinfrom">
+        <div class="form-group">
+          <label for="author">작성자</label>
+          <input
+            type="text"
+            id="author"
+            name="author"
+            placeholder="이름을 입력하세요"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="title">제목</label>
+          <input
+            type="text"
+            id="title"
+            name="title"
+            placeholder="제목을 입력하세요"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="content">내용</label>
+          <textarea
+            id="content"
+            name="content"
+            placeholder="내용을 입력하세요"
+            required
+          ></textarea>
+        </div>
+
+        <button type="submit">등록하기</button>
+      </form>
+    </div>
+    <script>
+      // fetch 활용해서 등록
+      document
+        .querySelector("#bulletinfrom")
+        .addEventListener("submit", (e) => {
+          console.log(e);
+          e.preventDefault();
+
+          const title = document.querySelector("#title").value;
+          const content = document.querySelector("#content").value;
+          const writer_id = document.querySelector("#author").value;
+          if (!author || !title || !content) {
+            alert("입력란이 공백입니다");
+            return;
+          }
+
+          fetch("./api/board", {
+            method: "post",
+            headers: { "content-Type": "application/json" },
+            body: JSON.stringify({ title, content, writer_id }),
+          })
+            .then((resp) => resp.json())
+            .then((data) => {
+              console.log(data);
+
+              if (data.affectedRows) {
+                alert("게시글 등록");
+                location.href = "boardList.html";
+              } else {
+                alert("등록 실패");
+              }
+            })
+            .catch((err) => console.log(err));
+        });
+    </script>
+  </body>
+</html>

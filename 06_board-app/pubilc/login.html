@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인</title>
+    <link rel="stylesheet" href="./login.css" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h3>로그인</h3>
+      <form id="loginForm">
+        <input
+          type="text"
+          placeholder="아이디"
+          id="username"
+          autocomplete="username"
+        />
+        <input
+          type="password"
+          placeholder="비밀번호"
+          id="password"
+          autocomplete="current-password"
+          required
+        />
+        <button type="submit" id="subBtn">로그인</button>
+      </form>
+    </div>
+    <script>
+      // 이벤트 폼이벤트
+      document.querySelector("#loginForm").addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const loginId = document.querySelector(`#username`).value;
+        const password = document.querySelector(`#password`).value;
+        // ajax 호출
+        fetch("./api/auth/login", {
+          method: "post",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ loginId: loginId, password: password }),
+        })
+          .then((resp) => resp.json())
+          .then((data) => {
+            // retCode:OK , retCode: NG
+            if (data.retCode == "OK") {
+              alert("로그인 성공 !");
+              location.href = "boardList.html";
+            } else {
+              alert("아이디와 비밀번호를 확인하세요");
+              location.reload();
+            }
+          });
+      });
+    </script>
+  </body>
+</html>

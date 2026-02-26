@@ -1,0 +1,72 @@
+/* 기본 스타일 초기화 */
+body {
+  font-family: "Malgun Gothic", sans-serif;
+  color: #333;
+}
+
+.container {
+  width: 80%;
+  margin: 50px auto;
+}
+
+h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #333;
+  padding-bottom: 10px;
+}
+
+/* 테이블 스타일 */
+.board-table {
+  width: 100%;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-collapse: collapse; /* 테두리 중첩 제거 */
+}
+
+.board-table th,
+.board-table td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+/* 제목 행 스타일 */
+.board-table thead th {
+  background-color: #f8f9fa;
+  font-weight: bold;
+  color: #555;
+}
+
+/* 제목 열만 왼쪽 정렬 */
+.board-table .text-left {
+  text-align: left;
+  padding-left: 20px;
+}
+
+/* 행 하이라이트 효과 */
+.board-table tbody tr:hover {
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+/* 링크 스타일 */
+.board-table a {
+  text-decoration: none;
+  color: #333;
+}
+
+.board-table a:hover {
+  text-decoration: underline;
+}
+
+/* 컬럼 너비 지정 */
+.th-num {
+  width: 80px;
+}
+.th-writer {
+  width: 100px;
+}
+.th-date {
+  width: 180px;
+}

@@ -1,6 +1,6 @@
 // sql 구문 실행
 const mysql = require("mysql2/promise");
-require("dotenv").config({ path: "../.env" });
+// require("dotenv").config({ path: "../.env" });
 
 // pool에 담아 활용
 const pool = mysql.createPool({
